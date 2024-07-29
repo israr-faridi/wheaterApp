@@ -95,3 +95,32 @@ function showData(data) {
     console.log(data)
 
 }
+
+
+
+
+
+function getCurrentLocation() {
+    navigator.geolocation.getCurrentPosition((position) => {
+        let lon = position.coords.longitude
+        let lat = position.coords.latitude;
+        let Currenturl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&units=metric&appid=${api_key}`
+        fetch(Currenturl)
+            .then((res) => {
+                return res.json();
+            })
+            .then((data) => {
+                showData(data);
+            })
+            .catch((err) => {
+                box.innerHTML = `<p></p>`
+                box.innerHTML = `<img src="/assets/imgs/not-found.png"/>`
+                console.log(err);
+            })
+
+    }, (error) => {
+        const { message } = error;
+        box.innerHTML = `<p class="Error">${message}</p>`
+    })
+}
+locations.addEventListener('click', getCurrentLocation)
