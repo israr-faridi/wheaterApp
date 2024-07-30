@@ -79,6 +79,15 @@ img {
     font-weight: 500;
 }
 
+.degree_city p {
+    font-size: 2rem;
+    font-weight: 500;
+    line-height: 20px;
+    margin-bottom: 30px;
+}
+.box_error{
+    display: none;
+}
 
 .bottom_data {
     margin-top: 18px;
@@ -118,31 +127,45 @@ img {
     object-fit: contain;
 }
 
+
+/* ///////////////////
+/// see this /////////
+/////////////////////// */
+body{
+    height: 100vh;
+    background-color: #3e4a47;
+    overflow-y: hidden;
+}
 .bg {
-    background-size: cover !important;
+    background-size: cover  !important;
+    /* height: 100%; */
+    object-fit: cover;
     background-repeat: no-repeat !important;
 }
-
+.loader img{
+    background-color: transparent;
+}
 .rain {
-    background: url('https://media.giphy.com/media/Mgq7EMQUrhcvC/giphy.gif?cid=ecf05e47qgwpmoccszxheuzeb7f2puimny6y4bihvs3pmpbn&ep=v1_gifs_search&rid=giphy.gif&ct=g');
+    background: url('./asset/gif/rain.gif');
 }
 .thunderstorms{
-    background: url('https://giphy.com/clips/storyful-lightning-storm-alabama-0njuIa6SDmr04G9N9f');
+    background: url('./asset/gif/thunderstorms.gif');
 }
 .drizzle{
-    background: url('https://giphy.com/gifs/justin-g-rain-drizzle-xT9GEOg09OuResnZ6g');
+    background: url('./asset/gif/drizzle.gif');
 }
 .snow{
-    background: url('https://media2.giphy.com/media/26FL4IWDUYp0y6kTK/200.webp?cid=790b7611rp6ej6wz40bxdnft7whfvve7hh3134pkto0ghmx6&ep=v1_gifs_search&rid=200.webp&ct=g');
+    background: url('./asset/gif/snow.gif');
 }
 .cloudy{
-    background: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNGtlMGh1cm55MTg3ajF4Y2x0ZHY0ZHZiZHF2NWEyNjFpZGlyNmJyNSZlcD12MV9naWZzX3NlYXJjaCZjdD1n/CafqXRlBVvEqMchF1m/giphy.gif');
+    background: url('./asset/gif/cloudy.gif');
 }
 .clouds{
-    background: url('https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExN3o0M256OGc4cW4wdnd0MGx6cW9ndXcwczU0OTV3N3J0ZXk5bW41cCZlcD12MV9naWZzX3NlYXJjaCZjdD1n/KwZoSJlvep6Vy/giphy.gif');
+    background: url('./asset/gif/clouds.gif');
 }
 .sun{
-    background: url('https://media.giphy.com/media/zsiR9zVOwzhHe42GbE/giphy.gif?cid=ecf05e470fky7wl9o5fi9ch9o5v4m4iqajzqhrombjcitgtp&ep=v1_gifs_search&rid=giphy.gif&ct=g');
+    background: url('./asset/gif/sun.gif');
+    
 }
 @media screen and (max-width: 480px) {
 

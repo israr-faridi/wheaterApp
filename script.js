@@ -1,10 +1,13 @@
 let input = document.querySelector('input');
-let box = document.querySelector('.box')
+let box_data = document.querySelector('.box_data')
+let box_error = document.querySelector('.box_error')
+let loader = document.querySelector('.loader')
 let search = document.querySelector('.search');
 let locations = document.querySelector('.location');
 let img = document.querySelector('.weather');
 let degree = document.querySelector('.degree_city h1');
 let city = document.querySelector('.degree_city h2');
+let weatherName = document.querySelector('.degree_city p');
 let wind = document.querySelector('.wind');
 let hum = document.querySelector('.humidity');
 let body = document.querySelector('body');
@@ -20,18 +23,32 @@ let body = document.querySelector('body');
 const api_key = '7bc37fd647675feb4ba0e4fa033b1409';
 
 function fetchData() {
-
+    loader.innerHTML = `<img class='error' src="https://i.gifer.com/3F3F.gif"/>`
+    loader.style.display = 'block';
+    box_error.style.display = "none";
+    box_data.style.display = 'none';
     let url = ` https://api.openweathermap.org/data/2.5/weather?q=${input.value}&units=metric&appid=${api_key}`
 
     fetch(url)
         .then((res) => {
             return res.json();
+
         })
         .then((data) => {
             showData(data)
+            setTimeout(() => {
+                loader.style.display = "none";
+                box_data.style.display = "block";
+                box_error.style.display = "none";
+            }, 1000);
         })
         .catch((err) => {
-            box.innerHTML = `<img class='error' src="/asset/imgs/not-found.png"/>`
+            setTimeout(() => {
+                loader.style.display = "none";
+                box_data.style.display = "none";
+                box_error.style.display = "block";
+                box_error.innerHTML = `<img class='error' src="/asset/imgs/not-found.png"/>`
+            }, 1000);
             console.log(err)
         })
 
@@ -50,13 +67,13 @@ input.addEventListener('keyup', (e) => {
 
 
 function showData(data) {
-    
+
     const { country } = data.sys
     const { temp, humidity } = data.main
     const { speed } = data.wind
-    const { id } = data.weather[0]
+    const { id, main } = data.weather[0]
 
-
+    body.className = ' ';
 
     if (id >= 200 && id <= 232) {
         img.src = './asset/imgs/thunderstorms.png'
@@ -89,6 +106,7 @@ function showData(data) {
 
 
     city.innerHTML = data.name + ',' + country
+    weatherName.innerHTML = main
     degree.innerHTML = Math.round(temp) + `<sup>o</sup>c`
     wind.innerHTML = speed + "km/h"
     hum.innerHTML = humidity + "%"
@@ -101,6 +119,10 @@ function showData(data) {
 
 
 function getCurrentLocation() {
+     loader.innerHTML = `<img class='error' src="https://i.gifer.com/3F3F.gif"/>`
+     loader.style.display = 'block';
+     box_error.style.display = "none";
+     box_data.style.display = 'none';
     navigator.geolocation.getCurrentPosition((position) => {
         let lon = position.coords.longitude
         let lat = position.coords.latitude;
@@ -111,16 +133,26 @@ function getCurrentLocation() {
             })
             .then((data) => {
                 showData(data);
+                setTimeout(() => {
+                    loader.style.display = "none";
+                    box_data.style.display = "block";
+                    box_error.style.display = "none";
+                }, 1000);
             })
             .catch((err) => {
-                box.innerHTML = `<p></p>`
-                box.innerHTML = `<img src="/assets/imgs/not-found.png"/>`
-                console.log(err);
+                setTimeout(() => {
+                    loader.style.display = "none";
+                    box_data.style.display = "none";
+                    box_error.style.display = "block";
+                    box_error.innerHTML = `<img class='error' src="/asset/imgs/not-found.png"/>`
+                }, 1000);
+                console.log(err)
             })
 
     }, (error) => {
         const { message } = error;
-        box.innerHTML = `<p class="Error">${message}</p>`
+        box_error.innerHTML = `<p class="Error">${message}</p>`
     })
 }
 locations.addEventListener('click', getCurrentLocation)
+
