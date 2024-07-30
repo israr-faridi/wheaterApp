@@ -25,10 +25,10 @@
 }
 
 .btn {
-    width: 45px;
+    width: 49px;
     background-color: #eeee;
     padding: 12px;
-    border-radius: 25px;
+    border-radius: 32px;
     color: red;
     font-size: 1.3rem;
     margin-right: 10px;
@@ -45,7 +45,7 @@ input {
     font-size: 1rem;
     margin-right: 14px;
     width: 60%;
-    padding: 15px 15px;
+    padding: 10px 15px;
     border-radius: 22px;
     outline: none;
     border: none;
